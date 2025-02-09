@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Stored URLs</title>
+</head>
+<body>
+    <h1>Stored URLs</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Short Code</th>
+            <th>Long URL</th>
+            <th>Visits</th>
+        </tr>
+        {% for url in urls %}
+        <tr>
+            <td>{{ url.id }}</td>
+            <td>{{ url.short_code }}</td>
+            <td>{{ url.long_url }}</td>
+            <td>{{ url.visits }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

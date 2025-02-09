@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>URL Shortener</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        /* Basic styling */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form id="shortenForm">
+            <input type="url" id="longUrl" placeholder="Enter URL" required>
+            <button type="submit">Shorten</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('shortenForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const longUrl = document.getElementById('longUrl').value;
+            
+            try {
+                const response = await fetch('/shorten', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ long_url: longUrl })
+                });
+                
+                const data = await response.json();
+                if (response.ok) {
+                    document.getElementById('result').innerHTML = `
+                        Short URL: <a href="${data.short_url}">${data.short_url}</a>
+                    `;
+                } else {
+                    document.getElementById('result').textContent = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                document.getElementById('result').textContent = 'Error: Unable to connect to server';
+            }
+        });
+    </script>
+</body>
+</html>
