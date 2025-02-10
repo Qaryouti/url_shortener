@@ -26,7 +26,7 @@ venv for virtual environment isolation (optional but recommended)
 -Clone the Repository
 
 ###
-git clone https://github.com/Qaryouti/Glance-Care-Screening-Test.git
+git clone https://github.com/Qaryouti/url_shortener
 cd url-shortener
 ###
 -Set Up Python Environment
